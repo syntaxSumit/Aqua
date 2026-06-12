@@ -1,691 +1,941 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aqua Life Enterprises - Pure Water, Pure Life</title>
+    <meta
+      name="description"
+      content="Authorized RO water purifier distributor, sales, and service support in Roorkee, Haridwar, Uttarakhand. 24-Hour support with certified expert installation."
+    />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aqua Life Enterprises - Pure Water, Pure Life</title>
-  <meta name="description"
-    content="Authorized RO water purifier distributor, sales, and service support in Roorkee, Haridwar, Uttarakhand. 24-Hour support with certified expert installation.">
+    <!-- Google Fonts: Syne + Instrument Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300..600;1,300..600&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts: Syne + Instrument Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300..600;1,300..600&family=Syne:wght@400;600;700;800&display=swap"
-    rel="stylesheet">
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-  <!-- External Stylesheet -->
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-  <!-- SECTION 1 — TOPBAR -->
-  <div class="topbar">
-    <div class="topbar-left">
-      📍 Opp. Dr Mahipal Ji Chowmandi, Roorkee, Haridwar
-    </div>
-    <div class="topbar-right">
-      <a href="tel:7017406035" class="topbar-phone">📞 7017406035</a>
-      <a href="tel:7060415238" class="topbar-phone">📞 7060415238</a>
-    </div>
-  </div>
-
-  <!-- SECTION 2 — STICKY NAVBAR -->
-  <div class="navbar-container">
-    <nav class="navbar">
-      <a href="#" class="nav-logo">
-        <div class="nav-logo-icon">💧</div>
-        <div class="nav-logo-text">
-          <h3>Aqua Life  Enterprises </h3>
-          <span>Pure Water, Pure Life</span>
-        </div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#forms">Support</a></li>
-        <li><a href="#why-us">Why Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="nav-cta-wrapper">
-        <button class="nav-cta-btn" onclick="scrollToFormsTab('enquiry')">Get Free Quote</button>
+  <body>
+    <!-- SECTION 1 — TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        📍 Opp. Dr Mahipal Ji Chowmandi, Roorkee, Haridwar
       </div>
-      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
-    <!-- Mobile dropdown menu -->
-    <div class="mobile-menu" id="mobile-menu">
-      <ul class="mobile-menu-links">
-        <li><a href="#forms" onclick="toggleMobileMenu()">Support</a></li>
-        <li><a href="#why-us" onclick="toggleMobileMenu()">Why Us</a></li>
-        <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
-      </ul>
-      <button class="nav-cta-btn" onclick="toggleMobileMenu(); scrollToFormsTab('enquiry')">Get Free Quote</button>
-    </div>
-  </div>
-
-  <!-- SECTION 3 — HERO -->
-  <header class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-gradient-overlay"></div>
-
-    <!-- Floating Bubbles -->
-    <div class="bubble bubble-1"></div>
-    <div class="bubble bubble-2"></div>
-    <div class="bubble bubble-3"></div>
-    <div class="bubble bubble-4"></div>
-    <div class="bubble bubble-5"></div>
-
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="blinking-dot"></span> Authorized RO Distributor · Roorkee
-      </div>
-      <h1>
-        Water That's<br>
-        <span class="hero-gradient-text">Truly Pure</span>
-      </h1>
-      <p class="hero-subtitle">
-        Protect your family's health with standard multi-stage purification technologies. Fast sales, expert
-        installation, and reliable service in Roorkee.
-      </p>
-      <div class="hero-cta">
-        <button class="hero-btn-primary" onclick="scrollToFormsTab('enquiry')">Get Free Quote</button>
-        <button class="hero-btn-secondary" onclick="scrollToFormsTab('complaint')">Register Complaint</button>
+      <div class="topbar-right">
+        <a href="tel:7017406035" class="topbar-phone">📞 7017406035</a>
+        <a href="tel:7060415238" class="topbar-phone">📞 7060415238</a>
       </div>
     </div>
 
-    <!-- Floating Stats (Right Side) -->
-    <div class="hero-stats-container">
-      <div class="stat-pill">
-        <div class="stat-icon">👨‍👩‍👧</div>
-        <div class="stat-text">
-          <h4>500+</h4>
-          <span>Happy Families Served</span>
-        </div>
-      </div>
-      <div class="stat-pill">
-        <div class="stat-icon">🏆</div>
-        <div class="stat-text">
-          <h4>8+ Years</h4>
-          <span>Trusted Experience</span>
-        </div>
-      </div>
-      <div class="stat-pill">
-        <div class="stat-icon">⚡</div>
-        <div class="stat-text">
-          <h4>24h</h4>
-          <span>Fast Service Support</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- SECTION 4 — TRUST BAR -->
-  <div class="trust-bar">
-    <div class="trust-container">
-      <div class="trust-badge">✅ ISI Certified Products</div>
-      <div class="trust-badge">🔧 Free Installation</div>
-      <div class="trust-badge">📞 24-Hour Support</div>
-      <div class="trust-badge">🛡️ 1-Year Service Warranty</div>
-      <div class="trust-badge">💧 100% Pure Water Guaranteed</div>
-    </div>
-  </div>
-
-  <!-- PRODUCTS SECTION REMOVED -->
-
-  <!-- SECTION 6 — FORMS SECTION -->
-  <section id="forms" class="forms-sec">
-    <div class="forms-container fade-in">
-      <div class="forms-sec-header">
-        <span class="section-label">Service & Sales</span>
-        <h2 class="section-title">How Can We Help You Today?</h2>
-      </div>
-
-      <!-- Tab switch menu container -->
-      <div class="tab-switcher">
-        <button class="tab-btn active" id="tab-btn-complaint" onclick="switchTab('complaint', this)">
-          🔧 <span>Complaint</span>
-        </button>
-        <button class="tab-btn" id="tab-btn-feedback" onclick="switchTab('feedback', this)">
-          ⭐ <span>Feedback</span>
-        </button>
-        <button class="tab-btn" id="tab-btn-enquiry" onclick="switchTab('enquiry', this)">
-          📋 <span>Enquiry</span>
-        </button>
-      </div>
-
-      <!-- COMPLAINT TAB -->
-      <div class="form-panel active" id="form-panel-complaint">
-        <form onsubmit="submitForm(event, 'complaint')">
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="comp-name">Full Name*</label>
-              <input type="text" id="comp-name" required placeholder="Enter your full name">
-            </div>
-            <div class="form-group">
-              <label for="comp-phone">Phone Number*</label>
-              <input type="tel" id="comp-phone" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
-            </div>
-            <div class="form-group">
-              <label for="comp-model">Product/Model</label>
-              <input type="text" id="comp-model" placeholder="e.g. AquaLife Pure 7L">
-            </div>
-            <div class="form-group">
-              <label for="comp-issue">Issue Type*</label>
-              <select id="comp-issue" required>
-                <option value="" disabled selected>Select issue type</option>
-                <option value="Water leakage">Water leakage</option>
-                <option value="Low water pressure">Low water pressure</option>
-                <option value="Unusual taste or smell">Unusual taste or smell</option>
-                <option value="Machine not working">Machine not working</option>
-                <option value="Filter replacement needed">Filter replacement needed</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div class="form-group form-full-width">
-              <label for="comp-desc">Describe the Issue*</label>
-              <textarea id="comp-desc" required placeholder="Describe the problem in detail..."></textarea>
-            </div>
+    <!-- SECTION 2 — STICKY NAVBAR -->
+    <div class="navbar-container">
+      <nav class="navbar">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">💧</div>
+          <div class="nav-logo-text">
+            <h3>Aqua Life Enterprises</h3>
+            <span>Pure Water, Pure Life</span>
           </div>
-          <div class="form-submit-row">
-            <button type="submit" class="form-submit-btn">Submit Complaint</button>
-          </div>
-          <div class="form-status" id="status-complaint"></div>
-        </form>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#forms">Support</a></li>
+          <li><a href="#why-us">Why Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-cta-wrapper">
+          <button class="nav-cta-btn" onclick="scrollToFormsTab('enquiry')">
+            Get Free Quote
+          </button>
+        </div>
+        <button
+          class="nav-hamburger"
+          id="nav-hamburger"
+          onclick="toggleMobileMenu()"
+          aria-label="Toggle navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+      <!-- Mobile dropdown menu -->
+      <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-menu-links">
+          <li><a href="#forms" onclick="toggleMobileMenu()">Support</a></li>
+          <li><a href="#why-us" onclick="toggleMobileMenu()">Why Us</a></li>
+          <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
+        </ul>
+        <button
+          class="nav-cta-btn"
+          onclick="
+            toggleMobileMenu();
+            scrollToFormsTab('enquiry');
+          "
+        >
+          Get Free Quote
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 3 — HERO -->
+    <header class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-gradient-overlay"></div>
+
+      <!-- Floating Bubbles -->
+      <div class="bubble bubble-1"></div>
+      <div class="bubble bubble-2"></div>
+      <div class="bubble bubble-3"></div>
+      <div class="bubble bubble-4"></div>
+      <div class="bubble bubble-5"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="blinking-dot"></span> Authorized RO Distributor · Roorkee
+        </div>
+        <h1>
+          Water That's<br />
+          <span class="hero-gradient-text">Truly Pure</span>
+        </h1>
+        <p class="hero-subtitle">
+          Protect your family's health with standard multi-stage purification
+          technologies. Fast sales, expert installation, and reliable service in
+          Roorkee.
+        </p>
+        <div class="hero-cta">
+          <button
+            class="hero-btn-primary"
+            onclick="scrollToFormsTab('enquiry')"
+          >
+            Get Free Quote
+          </button>
+          <button
+            class="hero-btn-secondary"
+            onclick="scrollToFormsTab('complaint')"
+          >
+            Register Complaint
+          </button>
+        </div>
       </div>
 
-      <!-- FEEDBACK TAB -->
-      <div class="form-panel" id="form-panel-feedback">
-        <form onsubmit="submitForm(event, 'feedback')">
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="feed-name">Full Name*</label>
-              <input type="text" id="feed-name" required placeholder="Enter your full name">
-            </div>
-            <div class="form-group">
-              <label for="feed-phone">Phone Number</label>
-              <input type="tel" id="feed-phone" pattern="[0-9]{10}" placeholder="10-digit mobile number (optional)">
-            </div>
-            <div class="form-group form-full-width">
-              <label>Star Rating*</label>
-              <div class="rating-container">
-                <div class="star-rating">
-                  <span class="star-icon" onclick="setRating(1)" data-val="1">⭐</span>
-                  <span class="star-icon" onclick="setRating(2)" data-val="2">⭐</span>
-                  <span class="star-icon" onclick="setRating(3)" data-val="3">⭐</span>
-                  <span class="star-icon" onclick="setRating(4)" data-val="4">⭐</span>
-                  <span class="star-icon" onclick="setRating(5)" data-val="5">⭐</span>
-                </div>
-                <span id="rating-label" style="font-weight: 600; color: var(--muted); font-size: 0.9rem;">Select
-                  Rating</span>
+      <!-- Floating Stats (Right Side) -->
+      <div class="hero-stats-container">
+        <div class="stat-pill">
+          <div class="stat-icon">👨‍👩‍👧</div>
+          <div class="stat-text">
+            <h4>500+</h4>
+            <span>Happy Families Served</span>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-text">
+            <h4>8+ Years</h4>
+            <span>Trusted Experience</span>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-text">
+            <h4>24h</h4>
+            <span>Fast Service Support</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 4 — TRUST BAR -->
+    <div class="trust-bar">
+      <div class="trust-container">
+        <div class="trust-badge">✅ ISI Certified Products</div>
+        <div class="trust-badge">🔧 Free Installation</div>
+        <div class="trust-badge">📞 24-Hour Support</div>
+        <div class="trust-badge">🛡️ 1-Year Service Warranty</div>
+        <div class="trust-badge">💧 100% Pure Water Guaranteed</div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS SECTION REMOVED -->
+
+    <!-- SECTION 6 — FORMS SECTION -->
+    <section id="forms" class="forms-sec">
+      <div class="forms-container fade-in">
+        <div class="forms-sec-header">
+          <span class="section-label">Service & Sales</span>
+          <h2 class="section-title">How Can We Help You Today?</h2>
+        </div>
+
+        <!-- Tab switch menu container -->
+        <div class="tab-switcher">
+          <button
+            class="tab-btn active"
+            id="tab-btn-complaint"
+            onclick="switchTab('complaint', this)"
+          >
+            🔧 <span>Complaint</span>
+          </button>
+          <button
+            class="tab-btn"
+            id="tab-btn-feedback"
+            onclick="switchTab('feedback', this)"
+          >
+            ⭐ <span>Feedback</span>
+          </button>
+          <button
+            class="tab-btn"
+            id="tab-btn-enquiry"
+            onclick="switchTab('enquiry', this)"
+          >
+            📋 <span>Enquiry</span>
+          </button>
+        </div>
+
+        <!-- COMPLAINT TAB -->
+        <div class="form-panel active" id="form-panel-complaint">
+          <form onsubmit="submitForm(event, 'complaint')">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="comp-name">Full Name*</label>
+                <input
+                  type="text"
+                  id="comp-name"
+                  required
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="comp-phone">Phone Number*</label>
+                <input
+                  type="tel"
+                  id="comp-phone"
+                  pattern="[0-9]{10}"
+                  required
+                  placeholder="10-digit mobile number"
+                />
+              </div>
+              <div class="form-group">
+                <label for="comp-model">Product/Model</label>
+                <input
+                  type="text"
+                  id="comp-model"
+                  placeholder="e.g. AquaLife Pure 7L"
+                />
+              </div>
+              <div class="form-group">
+                <label for="comp-issue">Issue Type*</label>
+                <select id="comp-issue" required>
+                  <option value="" disabled selected>Select issue type</option>
+                  <option value="Water leakage">Water leakage</option>
+                  <option value="Low water pressure">Low water pressure</option>
+                  <option value="Unusual taste or smell">
+                    Unusual taste or smell
+                  </option>
+                  <option value="Machine not working">
+                    Machine not working
+                  </option>
+                  <option value="Filter replacement needed">
+                    Filter replacement needed
+                  </option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group form-full-width">
+                <label for="comp-desc">Describe the Issue*</label>
+                <textarea
+                  id="comp-desc"
+                  required
+                  placeholder="Describe the problem in detail..."
+                ></textarea>
               </div>
             </div>
-            <div class="form-group form-full-width">
-              <label for="feed-desc">Your Feedback*</label>
-              <textarea id="feed-desc" required placeholder="Tell us about your experience..."></textarea>
+            <div class="form-submit-row">
+              <button type="submit" class="form-submit-btn">
+                Submit Complaint
+              </button>
             </div>
-          </div>
-          <div class="form-submit-row">
-            <button type="submit" class="form-submit-btn">Submit Feedback</button>
-          </div>
-          <div class="form-status" id="status-feedback"></div>
-        </form>
-      </div>
-
-      <!-- ENQUIRY TAB -->
-      <div class="form-panel" id="form-panel-enquiry">
-        <form onsubmit="submitForm(event, 'enquiry')">
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="enq-name">Full Name*</label>
-              <input type="text" id="enq-name" required placeholder="Enter your full name">
-            </div>
-            <div class="form-group">
-              <label for="enq-phone">Phone Number*</label>
-              <input type="tel" id="enq-phone" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
-            </div>
-            <div class="form-group">
-              <label for="enq-email">Email Address</label>
-              <input type="email" id="enq-email" placeholder="Enter your email address">
-            </div>
-            <div class="form-group">
-              <label for="enq-product">Product or Service Interest*</label>
-              <select id="enq-product" required>
-                <option value="" disabled selected>Select interest category</option>
-                <optgroup label="Aquaguard RO Systems">
-                  <option value="Aquaguard superio RO+UV+CU+SS TANK">Aquaguard superio RO+UV+CU+SS TANK</option>
-                  <option value="Aquaguard Neo 2x RO+UV with 2 Alkaline bottle">Aquaguard Neo 2x RO+UV with 2 Alkaline
-                    bottle</option>
-                  <option value="Aquaguard Aspair Blaze RO+UV+SS TANK">Aquaguard Aspair Blaze RO+UV+SS TANK</option>
-                  <option value="Aquaguard Helo 2X RO+UV+SS TANK">Aquaguard Helo 2X RO+UV+SS TANK</option>
-                  <option value="Aquaguard Champ RO+UV 2X">Aquaguard Champ RO+UV 2X</option>
-                </optgroup>
-                <optgroup label="Havells RO Systems">
-                  <option value="Havells Garcia Alkaline RO+UV+SS TANK Hot and warm and Ambient water">Havells Garcia
-                    Alkaline RO+UV+SS TANK (Hot/Warm/Ambient)</option>
-                  <option value="Havells Max Alkaline RO+UV">Havells Max Alkaline RO+UV</option>
-                  <option value="Havells Albus kopere alkaline with touch sensor.">Havells Albus kopere alkaline with
-                    touch sensor.</option>
-                  <option value="Havells Carina Neo 2x RO+UV">Havells Carina Neo 2x RO+UV</option>
-                  <option value="HAVELLS AQUAS PRO 3X RO+UV">HAVELLS AQUAS PRO 3X RO+UV</option>
-                </optgroup>
-                <optgroup label="Glen & Hob Appliances">
-                  <option value="Glen Chimney 60'75,90 cm">Glen Chimney 60'75,90 cm</option>
-                  <option value="Hob top 2 burner">Hob top 2 burner</option>
-                  <option value="3 burner">3 burner</option>
-                  <option value="4 burner">4 burner</option>
-                  <option value="GLEN Apliances">GLEN Apliances</option>
-                  <option value="Glen Chopper">Glen Chopper</option>
-                  <option value="Glen hend blender">Glen hend blender</option>
-                  <option value="Glen Airfryer">Glen Airfryer</option>
-                </optgroup>
-                <optgroup label="Service Support">
-                  <option value="RO Service / Maintenance">General RO Service & Maintenance</option>
-                  <option value="Filter / Membrane Replacement">Filter / Membrane Replacement</option>
-                  <option value="Other">Other / Custom Enquiry</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="form-group form-full-width">
-              <label for="enq-msg">Your Message</label>
-              <textarea id="enq-msg" placeholder="Any specific requirements or queries?"></textarea>
-            </div>
-          </div>
-          <div class="form-submit-row">
-            <button type="submit" class="form-submit-btn">Send Enquiry</button>
-          </div>
-          <div class="form-status" id="status-enquiry"></div>
-        </form>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECTION 7 — WHY US SECTION -->
-  <section id="why-us" class="why-sec">
-    <div class="why-sec-header">
-      <span class="section-label">Professional Standards</span>
-      <h2 class="section-title">Why Choose Aqua Life?</h2>
-      <p class="section-subtitle">We commit to providing premium class water purification products and services to
-        ensure your health.</p>
-    </div>
-
-    <div class="why-grid fade-in">
-
-      <div class="why-card">
-        <div class="why-card-icon">🛡️</div>
-        <h4>Certified Quality</h4>
-        <p>All our purifiers are ISI certified and engineered to remove bacteria, heavy metals, and viruses while
-          preserving essential minerals.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-card-icon">⚡</div>
-        <h4>Same-Day Service</h4>
-        <p>Experiencing water issues? Our certified service technicians are deployed on-site within 24 hours of filing a
-          complaint request.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-card-icon">🔧</div>
-        <h4>Expert Installation</h4>
-        <p>Installed correctly by local technical experts. We provide a complete 1-Year comprehensive service warranty
-          on setups.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-card-icon">💰</div>
-        <h4>Best Prices</h4>
-        <p>Extremely competitive market pricing on new RO purchases, premium quality filtration spares, and yearly AMC
-          packages.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECTION 7.5 — TESTIMONIALS SECTION -->
-  <section id="testimonials" class="testimonials-sec">
-    <div class="testimonials-container fade-in">
-      <div class="testimonials-header">
-        <span class="section-label">Customer Reviews</span>
-        <h2 class="section-title">What Our Customers Say</h2>
-      </div>
-
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Excellent service! Installed our new Aquaguard RO within 4 hours. Highly
-            professional team in Roorkee."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">RS</div>
-            <div class="testimonial-info">
-              <h5>Kapil Verma</h5>
-              <span>Gandhi Nagar, Roorkee</span>
-            </div>
-          </div>
+            <div class="form-status" id="status-complaint"></div>
+          </form>
         </div>
 
-        <div class="testimonial-card">
-          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Fast filter replacement. Registered a complaint online, and the technician
-            resolved it by the next morning."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">AK</div>
-            <div class="testimonial-info">
-              <h5>Amit Kumar</h5>
-              <span>Chowmandi, Roorkee</span>
+        <!-- FEEDBACK TAB -->
+        <div class="form-panel" id="form-panel-feedback">
+          <form onsubmit="submitForm(event, 'feedback')">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="feed-name">Full Name*</label>
+                <input
+                  type="text"
+                  id="feed-name"
+                  required
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="feed-phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="feed-phone"
+                  pattern="[0-9]{10}"
+                  placeholder="10-digit mobile number (optional)"
+                />
+              </div>
+              <div class="form-group form-full-width">
+                <label>Star Rating*</label>
+                <div class="rating-container">
+                  <div class="star-rating">
+                    <span class="star-icon" onclick="setRating(1)" data-val="1"
+                      >⭐</span
+                    >
+                    <span class="star-icon" onclick="setRating(2)" data-val="2"
+                      >⭐</span
+                    >
+                    <span class="star-icon" onclick="setRating(3)" data-val="3"
+                      >⭐</span
+                    >
+                    <span class="star-icon" onclick="setRating(4)" data-val="4"
+                      >⭐</span
+                    >
+                    <span class="star-icon" onclick="setRating(5)" data-val="5"
+                      >⭐</span
+                    >
+                  </div>
+                  <span
+                    id="rating-label"
+                    style="
+                      font-weight: 600;
+                      color: var(--muted);
+                      font-size: 0.9rem;
+                    "
+                    >Select Rating</span
+                  >
+                </div>
+              </div>
+              <div class="form-group form-full-width">
+                <label for="feed-desc">Your Feedback*</label>
+                <textarea
+                  id="feed-desc"
+                  required
+                  placeholder="Tell us about your experience..."
+                ></textarea>
+              </div>
             </div>
-          </div>
+            <div class="form-submit-row">
+              <button type="submit" class="form-submit-btn">
+                Submit Feedback
+              </button>
+            </div>
+            <div class="form-status" id="status-feedback"></div>
+          </form>
         </div>
 
-        <div class="testimonial-card">
-          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Great pricing on AMC packages. Highly reliable services and original quality
-            spare parts used."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">SG</div>
-            <div class="testimonial-info">
-              <h5>Sneha Gupta</h5>
-              <span> Haridwar</span>
+        <!-- ENQUIRY TAB -->
+        <div class="form-panel" id="form-panel-enquiry">
+          <form onsubmit="submitForm(event, 'enquiry')">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="enq-name">Full Name*</label>
+                <input
+                  type="text"
+                  id="enq-name"
+                  required
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="enq-phone">Phone Number*</label>
+                <input
+                  type="tel"
+                  id="enq-phone"
+                  pattern="[0-9]{10}"
+                  required
+                  placeholder="10-digit mobile number"
+                />
+              </div>
+              <div class="form-group">
+                <label for="enq-email">Email Address</label>
+                <input
+                  type="email"
+                  id="enq-email"
+                  placeholder="Enter your email address"
+                />
+              </div>
+              <div class="form-group">
+                <label for="enq-product">Product or Service Interest*</label>
+                <select id="enq-product" required>
+                  <option value="" disabled selected>
+                    Select interest category
+                  </option>
+                  <optgroup label="Aquaguard RO Systems">
+                    <option value="Aquaguard superio RO+UV+CU+SS TANK">
+                      Aquaguard superio RO+UV+CU+SS TANK
+                    </option>
+                    <option
+                      value="Aquaguard Neo 2x RO+UV with 2 Alkaline bottle"
+                    >
+                      Aquaguard Neo 2x RO+UV with 2 Alkaline bottle
+                    </option>
+                    <option value="Aquaguard Aspair Blaze RO+UV+SS TANK">
+                      Aquaguard Aspair Blaze RO+UV+SS TANK
+                    </option>
+                    <option value="Aquaguard Helo 2X RO+UV+SS TANK">
+                      Aquaguard Helo 2X RO+UV+SS TANK
+                    </option>
+                    <option value="Aquaguard Champ RO+UV 2X">
+                      Aquaguard Champ RO+UV 2X
+                    </option>
+                  </optgroup>
+                  <optgroup label="Havells RO Systems">
+                    <option
+                      value="Havells Garcia Alkaline RO+UV+SS TANK Hot and warm and Ambient water"
+                    >
+                      Havells Garcia Alkaline RO+UV+SS TANK (Hot/Warm/Ambient)
+                    </option>
+                    <option value="Havells Max Alkaline RO+UV">
+                      Havells Max Alkaline RO+UV
+                    </option>
+                    <option
+                      value="Havells Albus kopere alkaline with touch sensor."
+                    >
+                      Havells Albus kopere alkaline with touch sensor.
+                    </option>
+                    <option value="Havells Carina Neo 2x RO+UV">
+                      Havells Carina Neo 2x RO+UV
+                    </option>
+                    <option value="HAVELLS AQUAS PRO 3X RO+UV">
+                      HAVELLS AQUAS PRO 3X RO+UV
+                    </option>
+                  </optgroup>
+                  <optgroup label="Glen & Hob Appliances">
+                    <option value="Glen Chimney 60'75,90 cm">
+                      Glen Chimney 60'75,90 cm
+                    </option>
+                    <option value="Hob top 2 burner">Hob top 2 burner</option>
+                    <option value="3 burner">3 burner</option>
+                    <option value="4 burner">4 burner</option>
+                    <option value="GLEN Apliances">GLEN Apliances</option>
+                    <option value="Glen Chopper">Glen Chopper</option>
+                    <option value="Glen hend blender">Glen hend blender</option>
+                    <option value="Glen Airfryer">Glen Airfryer</option>
+                  </optgroup>
+                  <optgroup label="Service Support">
+                    <option value="RO Service / Maintenance">
+                      General RO Service & Maintenance
+                    </option>
+                    <option value="Filter / Membrane Replacement">
+                      Filter / Membrane Replacement
+                    </option>
+                    <option value="Other">Other / Custom Enquiry</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="form-group form-full-width">
+                <label for="enq-msg">Your Message</label>
+                <textarea
+                  id="enq-msg"
+                  placeholder="Any specific requirements or queries?"
+                ></textarea>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Superb customer experience. The team is very polite and the water quality has
-            been fantastic post-installation."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">PV</div>
-            <div class="testimonial-info">
-              <h5>Ravi Verma</h5>
-              <span>Civil Lines, Roorkee</span>
+            <div class="form-submit-row">
+              <button type="submit" class="form-submit-btn">
+                Send Enquiry
+              </button>
             </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Highly satisfied with their swift installation and transparent pricing. Best RO
-            distributor around here."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">RK</div>
-            <div class="testimonial-info">
-              <h5>Rajesh Kumar</h5>
-              <span> Ganeshpur, Roorkee</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Very polite staff and prompt troubleshooting. They did a water TDS test free of
-            cost during the service checkup."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">VS</div>
-            <div class="testimonial-info">
-              <h5>Vikram Singh</h5>
-              <span> Azad nagar ,Roorkee</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Highly recommend Aqua Life. They helped us choose the perfect Havells RO model
-            matching our home's water supply."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">NS</div>
-            <div class="testimonial-info">
-              <h5>Neha Sharma</h5>
-              <span> Jwalapur, Haridwar</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Exceptional after-sales support. They proactively reached out for our scheduled
-            RO filter service and replaced it quickly."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">MS</div>
-            <div class="testimonial-info">
-              <h5>Manish Saini</h5>
-              <span>Sati Kund, Haridwar</span>
-            </div>
-          </div>
+            <div class="form-status" id="status-enquiry"></div>
+          </form>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SECTION 8 — CONTACT SECTION -->
-  <section id="contact" class="contact-sec">
-    <div class="contact-container fade-in">
+    <!-- SECTION 7 — WHY US SECTION -->
+    <section id="why-us" class="why-sec">
+      <div class="why-sec-header">
+        <span class="section-label">Professional Standards</span>
+        <h2 class="section-title">Why Choose Aqua Life?</h2>
+        <p class="section-subtitle">
+          We commit to providing premium class water purification products and
+          services to ensure your health.
+        </p>
+      </div>
 
-      <div class="contact-left">
-        <span class="section-label">Find Us Here</span>
-        <h2 class="section-title" style="margin-bottom: 1.5rem;">Get in Touch</h2>
-
-        <div class="contact-card">
-          <div class="contact-card-icon">📍</div>
-          <div class="contact-card-details">
-            <h5>Our Address</h5>
-            <p>Opp. Dr Mahipal Ji Chowmandi, Roorkee, Haridwar, Uttarakhand, 247667</p>
-          </div>
+      <div class="why-grid fade-in">
+        <div class="why-card">
+          <div class="why-card-icon">🛡️</div>
+          <h4>Certified Quality</h4>
+          <p>
+            All our purifiers are ISI certified and engineered to remove
+            bacteria, heavy metals, and viruses while preserving essential
+            minerals.
+          </p>
         </div>
 
-        <div class="contact-card">
-          <div class="contact-card-icon">📞</div>
-          <div class="contact-card-details">
-            <h5>Call Us</h5>
-            <p>
-              <a href="tel:7017406035">7017406035</a> &nbsp;·&nbsp;
-              <a href="tel:7060415238">7060415238</a>
+        <div class="why-card">
+          <div class="why-card-icon">⚡</div>
+          <h4>Same-Day Service</h4>
+          <p>
+            Experiencing water issues? Our certified service technicians are
+            deployed on-site within 24 hours of filing a complaint request.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon">🔧</div>
+          <h4>Expert Installation</h4>
+          <p>
+            Installed correctly by local technical experts. We provide a
+            complete 1-Year comprehensive service warranty on setups.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon">💰</div>
+          <h4>Best Prices</h4>
+          <p>
+            Extremely competitive market pricing on new RO purchases, premium
+            quality filtration spares, and yearly AMC packages.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7.5 — TESTIMONIALS SECTION -->
+    <section id="testimonials" class="testimonials-sec">
+      <div class="testimonials-container fade-in">
+        <div class="testimonials-header">
+          <span class="section-label">Customer Reviews</span>
+          <h2 class="section-title">What Our Customers Say</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">
+              "Excellent service! Installed our new Aquaguard RO within 4 hours.
+              Highly professional team in Roorkee."
             </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">RS</div>
+              <div class="testimonial-info">
+                <h5>Kapil Verma</h5>
+                <span>Gandhi Nagar, Roorkee</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">
+              "Fast filter replacement. Registered a complaint online, and the
+              technician resolved it by the next morning."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AK</div>
+              <div class="testimonial-info">
+                <h5>Amit Kumar</h5>
+                <span>Chowmandi, Roorkee</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">
+              "Great pricing on AMC packages. Highly reliable services and
+              original quality spare parts used."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SG</div>
+              <div class="testimonial-info">
+                <h5>Sneha Gupta</h5>
+                <span> Haridwar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">
+              "Superb customer experience. The team is very polite and the water
+              quality has been fantastic post-installation."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">PV</div>
+              <div class="testimonial-info">
+                <h5>Ravi Verma</h5>
+                <span>Civil Lines, Roorkee</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">
+              "Highly satisfied with their swift installation and transparent
+              pricing. Best RO distributor around here."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">RK</div>
+              <div class="testimonial-info">
+                <h5>Rajesh Kumar</h5>
+                <span> Ganeshpur, Roorkee</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">
+              "Very polite staff and prompt troubleshooting. They did a water
+              TDS test free of cost during the service checkup."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">VS</div>
+              <div class="testimonial-info">
+                <h5>Vikram Singh</h5>
+                <span> Azad nagar ,Roorkee</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">
+              "Highly recommend Aqua Life. They helped us choose the perfect
+              Havells RO model matching our home's water supply."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">NS</div>
+              <div class="testimonial-info">
+                <h5>Neha Sharma</h5>
+                <span> Jwalapur, Haridwar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">
+              "Exceptional after-sales support. They proactively reached out for
+              our scheduled RO filter service and replaced it quickly."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MS</div>
+              <div class="testimonial-info">
+                <h5>Manish Saini</h5>
+                <span>Sati Kund, Haridwar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 — CONTACT SECTION -->
+    <section id="contact" class="contact-sec">
+      <div class="contact-container fade-in">
+        <div class="contact-left">
+          <span class="section-label">Find Us Here</span>
+          <h2 class="section-title" style="margin-bottom: 1.5rem">
+            Get in Touch
+          </h2>
+
+          <div class="contact-card">
+            <div class="contact-card-icon">📍</div>
+            <div class="contact-card-details">
+              <h5>Our Address</h5>
+              <p>
+                Opp. Dr Mahipal Ji Chowmandi, Roorkee, Haridwar, Uttarakhand,
+                247667
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon">📞</div>
+            <div class="contact-card-details">
+              <h5>Call Us</h5>
+              <p>
+                <a href="tel:7017406035">7017406035</a> &nbsp;·&nbsp;
+                <a href="tel:7060415238">7060415238</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon">💬</div>
+            <div class="contact-card-details">
+              <h5>WhatsApp</h5>
+              <p>
+                <a
+                  href="https://wa.me/917017406035"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Chat directly: +91 7017406035</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon">🕘</div>
+            <div class="contact-card-details">
+              <h5>Business Hours</h5>
+              <p>
+                Mon–Sat: 9:00 AM – 7:00 PM <br />
+                Sunday: 10:00 AM – 4:00 PM
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="contact-card">
-          <div class="contact-card-icon">💬</div>
-          <div class="contact-card-details">
-            <h5>WhatsApp</h5>
-            <p><a href="https://wa.me/917017406035" target="_blank" rel="noopener noreferrer">Chat directly: +91
-                7017406035</a></p>
+        <div class="contact-right">
+          <div class="map-wrapper">
+            <!-- Google Maps Embed for Shop No. 184, Roorkee -->
+            <iframe
+              src="https://maps.google.com/maps?q=Shop+No.+184,+New,+Railway+Rd,+Chow+Mandi,+Chand+Puri+Nagar,+Roorkee,+Uttarakhand+247667&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            >
+            </iframe>
+          </div>
+          <div class="map-buttons-row">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Shop+No.+184,+New,+Railway+Rd,+Chow+Mandi,+Chand+Puri+Nagar,+Roorkee,+Uttarakhand+247667"
+              target="_blank"
+              class="map-action-btn map-btn-map"
+            >
+              🗺️ View on Map
+            </a>
+            <a
+              href="https://wa.me/917017406035"
+              target="_blank"
+              class="map-action-btn map-btn-wa"
+            >
+              💬 WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9 — HIDDEN ADMIN PANEL -->
+    <section id="admin-panel" class="admin-sec">
+      <div class="admin-container">
+        <div class="admin-header-row">
+          <div>
+            <span class="section-label">Management console</span>
+            <h2>Admin Dashboard</h2>
+          </div>
+          <div class="admin-actions">
+            <button class="admin-btn admin-btn-secondary" onclick="exitAdmin()">
+              Exit Admin
+            </button>
           </div>
         </div>
 
-        <div class="contact-card">
-          <div class="contact-card-icon"> 🕘</div>
-          <div class="contact-card-details">
-            <h5>Business Hours</h5>
-            <p>Mon–Sat: 9:00 AM – 7:00 PM <br> Sunday: 10:00 AM – 4:00 PM</p>
+        <div class="admin-split">
+          <!-- A) CUSTOMER RECORDS CARD -->
+          <div class="admin-card-box" style="margin-bottom: 30px">
+            <div class="admin-card-title">
+              <span>📋 Customer Service & Sales Records</span>
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="admin-btn admin-btn-primary"
+                  onclick="exportCSV()"
+                >
+                  Export CSV
+                </button>
+                <button
+                  class="admin-btn admin-btn-danger"
+                  onclick="clearAllData()"
+                >
+                  Clear All Records
+                </button>
+              </div>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="admin-stats-row">
+              <div class="admin-stat-card">
+                <h5 id="stat-total">0</h5>
+                <span>Total Entries</span>
+              </div>
+              <div class="admin-stat-card">
+                <h5 id="stat-complaints">0</h5>
+                <span>Complaints</span>
+              </div>
+              <div class="admin-stat-card">
+                <h5 id="stat-feedback">0</h5>
+                <span>Feedback</span>
+              </div>
+              <div class="admin-stat-card">
+                <h5 id="stat-enquiries">0</h5>
+                <span>Enquiries</span>
+              </div>
+            </div>
+
+            <!-- Filter buttons -->
+            <div class="admin-filters">
+              <button
+                class="filter-btn active"
+                id="f-all"
+                onclick="setAdminFilter('all')"
+              >
+                All
+              </button>
+              <button
+                class="filter-btn"
+                id="f-complaint"
+                onclick="setAdminFilter('complaint')"
+              >
+                Complaints
+              </button>
+              <button
+                class="filter-btn"
+                id="f-feedback"
+                onclick="setAdminFilter('feedback')"
+              >
+                Feedback
+              </button>
+              <button
+                class="filter-btn"
+                id="f-enquiry"
+                onclick="setAdminFilter('enquiry')"
+              >
+                Enquiries
+              </button>
+            </div>
+
+            <!-- Table -->
+            <div class="table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Date & Time</th>
+                    <th>Record Type</th>
+                    <th>Customer Name</th>
+                    <th>Phone Number</th>
+                    <th>Key Details</th>
+                    <th>Message / Description</th>
+                    <th style="text-align: center">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-table-body">
+                  <!-- Javascript populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10 — FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col-1">
+          <h4>Aqua Life Enterprises</h4>
+          <p>
+            Authorized RO purifier sales, installation, services, and periodic
+            maintenance in Roorkee & surrounding areas.
+          </p>
+          <div class="footer-social-row">
+            <a
+              href="https://wa.me/917017406035"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-social-link"
+              >💬 WhatsApp</a
+            >
+            <a href="tel:7017406035" class="footer-social-link">📞 Phone </a>
           </div>
         </div>
 
+        <div class="footer-col-2">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li>
+              <a href="#forms" onclick="scrollToFormsTab('complaint')"
+                >Register Complaint</a
+              >
+            </li>
+            <li>
+              <a href="#forms" onclick="scrollToFormsTab('enquiry')"
+                >Book Service</a
+              >
+            </li>
+            <li><a href="#why-us">Why Choose Us</a></li>
+            <li><a href="#contact">Contact Location</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col-3">
+          <h5>Contact Info</h5>
+          <ul class="footer-contact-list">
+            <li>📍 Shop No. 184, Railway Rd, Chow Mandi, Roorkee</li>
+            <li>
+              📞 Call: <a href="tel:7017406035">7017406035</a> /
+              <a href="tel:7060415238">7060415238</a>
+            </li>
+            <li>
+              💬 WA:
+              <a
+                href="https://wa.me/917017406035"
+                target="_blank"
+                rel="noopener noreferrer"
+                >+91 7017406035</a
+              >
+            </li>
+            <li>🕘 Mon-Sat 9AM-7PM | Sun 10AM-4PM</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="contact-right">
-        <div class="map-wrapper">
-          <!-- Google Maps Embed for Shop No. 184, Roorkee -->
-          <iframe
-            src="https://maps.google.com/maps?q=Shop+No.+184,+New,+Railway+Rd,+Chow+Mandi,+Chand+Puri+Nagar,+Roorkee,+Uttarakhand+247667&t=&z=16&ie=UTF8&iwloc=&output=embed"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-        <div class="map-buttons-row">
-          <a href="https://www.google.com/maps/search/?api=1&query=Shop+No.+184,+New,+Railway+Rd,+Chow+Mandi,+Chand+Puri+Nagar,+Roorkee,+Uttarakhand+247667"
-            target="_blank" class="map-action-btn map-btn-map">
-            🗺️ View on Map
-          </a>
-          <a href="https://wa.me/917017406035" target="_blank" class="map-action-btn map-btn-wa">
-            💬 WhatsApp Us
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECTION 9 — HIDDEN ADMIN PANEL -->
-  <section id="admin-panel" class="admin-sec">
-    <div class="admin-container">
-
-      <div class="admin-header-row">
+      <div class="footer-bottom">
         <div>
-          <span class="section-label">Management console</span>
-          <h2>Admin Dashboard</h2>
+          © 2026 Aqua Life Enterprises. All Rights Reserved. Pure Water, Pure
+          Life.
         </div>
-        <div class="admin-actions">
-          <button class="admin-btn admin-btn-secondary" onclick="exitAdmin()">Exit Admin</button>
-        </div>
+        <div class="admin-trigger" onclick="promptAdmin()">Admin</div>
       </div>
+    </footer>
 
-      <div class="admin-split">
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div class="toast-container" id="toast-container"></div>
 
-        <!-- A) CUSTOMER RECORDS CARD -->
-        <div class="admin-card-box" style="margin-bottom: 30px;">
-          <div class="admin-card-title">
-            <span>📋 Customer Service & Sales Records</span>
-            <div style="display: flex; gap: 8px;">
-              <button class="admin-btn admin-btn-primary" onclick="exportCSV()">Export CSV</button>
-              <button class="admin-btn admin-btn-danger" onclick="clearAllData()">Clear All Records</button>
-            </div>
-          </div>
+    <!-- External Script Logic -->
+    <script src="app.js"></script>
 
-          <!-- Stats Row -->
-          <div class="admin-stats-row">
-            <div class="admin-stat-card">
-              <h5 id="stat-total">0</h5>
-              <span>Total Entries</span>
-            </div>
-            <div class="admin-stat-card">
-              <h5 id="stat-complaints">0</h5>
-              <span>Complaints</span>
-            </div>
-            <div class="admin-stat-card">
-              <h5 id="stat-feedback">0</h5>
-              <span>Feedback</span>
-            </div>
-            <div class="admin-stat-card">
-              <h5 id="stat-enquiries">0</h5>
-              <span>Enquiries</span>
-            </div>
-          </div>
+    <!-- n8n Chat Widget -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css"
+      rel="stylesheet"
+    />
+    <script type="module">
+      import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js";
 
-          <!-- Filter buttons -->
-          <div class="admin-filters">
-            <button class="filter-btn active" id="f-all" onclick="setAdminFilter('all')">All</button>
-            <button class="filter-btn" id="f-complaint" onclick="setAdminFilter('complaint')">Complaints</button>
-            <button class="filter-btn" id="f-feedback" onclick="setAdminFilter('feedback')">Feedback</button>
-            <button class="filter-btn" id="f-enquiry" onclick="setAdminFilter('enquiry')">Enquiries</button>
-          </div>
-
-          <!-- Table -->
-          <div class="table-wrapper">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>Date & Time</th>
-                  <th>Record Type</th>
-                  <th>Customer Name</th>
-                  <th>Phone Number</th>
-                  <th>Key Details</th>
-                  <th>Message / Description</th>
-                  <th style="text-align: center;">Action</th>
-                </tr>
-              </thead>
-              <tbody id="admin-table-body">
-                <!-- Javascript populated -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECTION 10 — FOOTER -->
-  <footer class="footer">
-    <div class="footer-grid">
-
-      <div class="footer-col-1">
-        <h4>Aqua Life Enterprises</h4>
-        <p>Authorized RO purifier sales, installation, services, and periodic maintenance in Roorkee & surrounding
-          areas.</p>
-        <div class="footer-social-row">
-          <a href="https://wa.me/917017406035" target="_blank" rel="noopener noreferrer" class="footer-social-link">💬
-            WhatsApp</a>
-          <a href="tel:7017406035" class="footer-social-link">📞 Phone </a>
-        </div>
-      </div>
-
-      <div class="footer-col-2">
-        <h5>Quick Links</h5>
-        <ul class="footer-links">
-          <li><a href="#forms" onclick="scrollToFormsTab('complaint')">Register Complaint</a></li>
-          <li><a href="#forms" onclick="scrollToFormsTab('enquiry')">Book Service</a></li>
-          <li><a href="#why-us">Why Choose Us</a></li>
-          <li><a href="#contact">Contact Location</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col-3">
-        <h5>Contact Info</h5>
-        <ul class="footer-contact-list">
-          <li>📍 Shop No. 184, Railway Rd, Chow Mandi, Roorkee</li>
-          <li>📞 Call: <a href="tel:7017406035">7017406035</a> / <a href="tel:7060415238">7060415238</a></li>
-          <li>💬 WA: <a href="https://wa.me/917017406035" target="_blank" rel="noopener noreferrer">+91 7017406035</a>
-          </li>
-          <li>🕘 Mon-Sat 9AM-7PM | Sun 10AM-4PM</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <div>
-        © 2026 Aqua Life Enterprises. All Rights Reserved. Pure Water, Pure Life.
-      </div>
-      <div class="admin-trigger" onclick="promptAdmin()">
-        Admin
-      </div>
-    </div>
-  </footer>
-
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div class="toast-container" id="toast-container"></div>
-
-  <!-- External Script Logic -->
-  <script src="app.js"></script>
-
-  <!-- n8n Chat Widget -->
-  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-  <script type="module">
-    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-    createChat({
-      webhookUrl: 'https://n8n-sumit.duckdns.org/webhook/ea75c872-b593-4798-a6c0-376b6e4e9e2e/chat',
-      initialMessages: [
-        'Hi there! 👋',
-        'I\'m Aqua, How can I help you today?'
-      ],
-      i18n: {
-        en: {
-          title: 'Aqua',
-          subtitle: 'Your RO & Glen Appliance Assistant',
-          inputPlaceholder: 'Type your question...',
-        }
-      }
-    });
-  </script>
-
-
-</body>
-
+      createChat({
+        webhookUrl:
+          "https://n8n-sumit.duckdns.org/webhook/ea75c872-b593-4798-a6c0-376b6e4e9e2e/chat",
+        initialMessages: [
+          "Hi there! 👋",
+          "I'm Aqua, How can I help you today?",
+        ],
+        i18n: {
+          en: {
+            title: "Aqua",
+            subtitle: "Your RO & Glen Appliance Assistant",
+            inputPlaceholder: "Type your question...",
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
