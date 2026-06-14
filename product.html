@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details — Aqua Life Enterprises</title>
+    <meta name="description" content="View detailed product information including price, specifications, and features. Get a free quote from Aqua Life Enterprises, Roorkee." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300..600;1,300..600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* =============================================
+         PRODUCT DETAIL PAGE — SCOPED STYLES
+         ============================================= */
+
+      .pd-page {
+        min-height: 100vh;
+        background: var(--off);
+      }
+
+      /* ---- Back Bar ---- */
+      .pd-back-bar {
+        background: var(--white);
+        border-bottom: 1px solid rgba(10, 77, 124, 0.08);
+        padding: 14px 3rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pd-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: 2px solid rgba(10, 77, 124, 0.14);
+        color: var(--ocean);
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: var(--radius-pill);
+        cursor: pointer;
+        transition: var(--transition-spring);
+        text-decoration: none;
+      }
+
+      .pd-back-btn:hover {
+        background: var(--ocean);
+        color: var(--white);
+        border-color: var(--ocean);
+        transform: translateX(-3px);
+      }
+
+      .pd-breadcrumb {
+        font-size: 0.85rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .pd-breadcrumb a {
+        color: var(--wave);
+        font-weight: 500;
+      }
+
+      .pd-breadcrumb a:hover {
+        text-decoration: underline;
+      }
+
+      /* ---- Main Content ---- */
+      .pd-main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 3rem 2.5rem 5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: start;
+      }
+
+      /* ---- Image Panel ---- */
+      .pd-image-panel {
+        position: sticky;
+        top: 90px;
+      }
+
+      .pd-image-wrap {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: 24px;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--foam) 0%, #c8e8f8 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(10, 77, 124, 0.08);
+      }
+
+      .pd-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .pd-image-wrap img:hover {
+        transform: scale(1.04);
+      }
+
+      .pd-no-image-placeholder {
+        font-size: 6rem;
+        opacity: 0.35;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        color: var(--muted);
+      }
+
+      .pd-no-image-placeholder span {
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* Trust Mini-Badges below image */
+      .pd-trust-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .pd-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--white);
+        border: 1px solid rgba(10, 77, 124, 0.1);
+        border-radius: var(--radius-pill);
+        padding: 7px 14px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--ocean);
+        box-shadow: var(--shadow-sm);
+      }
+
+      /* ---- Info Panel ---- */
+      .pd-info-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      /* Category chip */
+      .pd-cat-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: var(--radius-pill);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        width: fit-content;
+      }
+
+      .pd-cat-aquaguard { background: rgba(0,180,216,0.12); color: #0077a8; }
+      .pd-cat-havells   { background: rgba(42,157,143,0.12); color: #2a9d8f; }
+      .pd-cat-glen      { background: rgba(244,160,35,0.15); color: #c07a00; }
+      .pd-cat-other     { background: rgba(91,122,146,0.10); color: #5b7a92; }
+
+      .pd-product-name {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+        color: var(--deep);
+        font-weight: normal;
+        line-height: 1.2;
+        letter-spacing: 0.01em;
+      }
+
+      /* Price Block */
+      .pd-price-block {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        background: var(--white);
+        border: 1px solid rgba(10, 77, 124, 0.1);
+        border-radius: 16px;
+        padding: 18px 22px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .pd-price-label {
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+      }
+
+      .pd-price-value {
+        font-family: var(--font-heading);
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--ocean);
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+
+      /* Description Block */
+      .pd-desc-block {
+        background: var(--white);
+        border: 1px solid rgba(10, 77, 124, 0.08);
+        border-radius: 16px;
+        padding: 22px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .pd-desc-block h4 {
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        margin-bottom: 14px;
+      }
+
+      .pd-desc-text {
+        font-size: 1rem;
+        color: var(--ink);
+        line-height: 1.85;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      /* Meta row — date added */
+      .pd-meta-row {
+        font-size: 0.82rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* CTA Buttons */
+      .pd-cta-block {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .pd-cta-primary {
+        background: linear-gradient(135deg, var(--ocean), var(--wave));
+        color: var(--white);
+        border: none;
+        border-radius: var(--radius-pill);
+        padding: 16px 32px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition-spring);
+        box-shadow: 0 6px 25px rgba(10, 77, 124, 0.3);
+        text-align: center;
+        display: block;
+        text-decoration: none;
+      }
+
+      .pd-cta-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(10, 77, 124, 0.4);
+      }
+
+      .pd-cta-secondary-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .pd-cta-secondary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 2px solid rgba(10, 77, 124, 0.15);
+        background: var(--white);
+        color: var(--ocean);
+        padding: 12px 18px;
+        border-radius: var(--radius-pill);
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition-spring);
+        text-decoration: none;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .pd-cta-secondary:hover {
+        border-color: var(--wave);
+        background: var(--ocean);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      /* ---- Error / Not Found ---- */
+      .pd-not-found {
+        max-width: 560px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 8rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .pd-not-found-icon {
+        font-size: 5rem;
+        opacity: 0.4;
+      }
+
+      .pd-not-found h2 {
+        font-size: 1.6rem;
+        color: var(--deep);
+      }
+
+      .pd-not-found p {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      /* ---- Related Hint ---- */
+      .pd-related-bar {
+        border-top: 1px solid rgba(10, 77, 124, 0.08);
+        padding-top: 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .pd-related-bar a {
+        color: var(--wave);
+        font-weight: 600;
+      }
+
+      .pd-related-bar a:hover {
+        text-decoration: underline;
+      }
+
+      /* ---- Responsive ---- */
+      @media (max-width: 768px) {
+        .pd-back-bar {
+          padding: 12px 1.2rem;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .pd-main {
+          grid-template-columns: 1fr;
+          padding: 1.5rem 1.2rem 4rem;
+          gap: 28px;
+        }
+
+        .pd-image-panel {
+          position: static;
+        }
+
+        .pd-cta-secondary-row {
+          grid-template-columns: 1fr;
+        }
+
+        .pd-price-value {
+          font-size: 2rem;
+        }
+
+        .pd-product-name {
+          font-size: 1.7rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        📍 Opp. Dr Mahipal Ji Chowmandi, Roorkee, Haridwar
+      </div>
+      <div class="topbar-right">
+        <a href="tel:7017406035" class="topbar-phone">📞 7017406035</a>
+        <a href="tel:7060415238" class="topbar-phone">📞 7060415238</a>
+      </div>
+    </div>
+
+    <!-- STICKY NAVBAR -->
+    <div class="navbar-container">
+      <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">💧</div>
+          <div class="nav-logo-text">
+            <h3>Aqua Life Enterprises</h3>
+            <span>Pure Water, Pure Life</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#forms">Support</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="index.html#why-us">Why Us</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-cta-wrapper">
+          <a href="index.html#forms" class="nav-cta-btn" id="navbar-quote-btn">Get Free Quote</a>
+        </div>
+        <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenuPD()" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+      <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-menu-links">
+          <li><a href="index.html#forms" onclick="toggleMobileMenuPD()">Support</a></li>
+          <li><a href="index.html#products" onclick="toggleMobileMenuPD()">Products</a></li>
+          <li><a href="index.html#why-us" onclick="toggleMobileMenuPD()">Why Us</a></li>
+          <li><a href="index.html#contact" onclick="toggleMobileMenuPD()">Contact</a></li>
+        </ul>
+        <a href="index.html#forms" class="nav-cta-btn" style="display:block; text-align:center;">Get Free Quote</a>
+      </div>
+    </div>
+
+    <!-- PRODUCT DETAIL PAGE BODY -->
+    <div class="pd-page" id="pd-page">
+
+      <!-- Back Navigation Bar -->
+      <div class="pd-back-bar">
+        <a href="index.html#products" class="pd-back-btn" id="pd-back-btn">
+          ← Back to Products
+        </a>
+        <div class="pd-breadcrumb">
+          <a href="index.html">Home</a>
+          <span>›</span>
+          <a href="index.html#products">Products</a>
+          <span>›</span>
+          <span id="pd-breadcrumb-name">Loading…</span>
+        </div>
+      </div>
+
+      <!-- Main Product Layout — JS populated -->
+      <div class="pd-main" id="pd-main" style="display:none;">
+
+        <!-- LEFT: Image Panel -->
+        <div class="pd-image-panel">
+          <div class="pd-image-wrap" id="pd-image-wrap">
+            <!-- JS populated -->
+          </div>
+
+          <div class="pd-trust-row">
+            <div class="pd-trust-item">✅ ISI Certified</div>
+            <div class="pd-trust-item">🔧 Free Installation</div>
+            <div class="pd-trust-item">🛡️ 1-Year Warranty</div>
+            <div class="pd-trust-item">📞 24h Support</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Info Panel -->
+        <div class="pd-info-panel">
+
+          <!-- Category Chip -->
+          <span class="pd-cat-chip" id="pd-cat-chip"><!-- JS --></span>
+
+          <!-- Product Name -->
+          <h1 class="pd-product-name" id="pd-product-name"><!-- JS --></h1>
+
+          <!-- Price Block -->
+          <div class="pd-price-block">
+            <span class="pd-price-label">Our Price</span>
+            <div class="pd-price-value" id="pd-price"><!-- JS --></div>
+          </div>
+
+          <!-- Description -->
+          <div class="pd-desc-block">
+            <h4>📋 Product Details &amp; Features</h4>
+            <p class="pd-desc-text" id="pd-desc"></p>
+          </div>
+
+          <!-- Date Added -->
+          <div class="pd-meta-row">
+            🕐 <span id="pd-date"><!-- JS --></span>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="pd-cta-block">
+            <a class="pd-cta-primary" id="pd-enquire-btn" href="index.html#forms">
+              📋 Get Free Quote for this Product
+            </a>
+            <div class="pd-cta-secondary-row">
+              <a href="tel:7017406035" class="pd-cta-secondary">
+                📞 Call Us
+              </a>
+              <a href="https://wa.me/917017406035" target="_blank" rel="noopener noreferrer" class="pd-cta-secondary">
+                💬 WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="pd-related-bar">
+            Looking for more options?
+            <a href="index.html#products">Browse all products →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Not Found State — hidden by default -->
+      <div class="pd-not-found" id="pd-not-found" style="display:none;">
+        <div class="pd-not-found-icon">📦</div>
+        <h2>Product Not Found</h2>
+        <p>
+          This product may have been removed or the link is invalid.<br/>
+          Browse our full catalog to find what you're looking for.
+        </p>
+        <a href="index.html#products" class="pd-cta-primary" style="width: fit-content; padding: 14px 32px;">
+          ← Browse All Products
+        </a>
+      </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+      /* ================================================
+         PRODUCT DETAIL PAGE — JAVASCRIPT
+         ================================================ */
+
+      const PRODUCT_CATEGORIES = [
+        { key: 'aquaguard', label: 'Aquaguard RO',    icon: '💧' },
+        { key: 'havells',   label: 'Havells RO',      icon: '🌊' },
+        { key: 'glen',      label: 'Glen Appliances', icon: '🔥' },
+        { key: 'other',     label: 'Other',           icon: '📦' }
+      ];
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function toggleMobileMenuPD() {
+        document.getElementById('nav-hamburger').classList.toggle('active');
+        document.getElementById('mobile-menu').classList.toggle('active');
+      }
+
+      function showToast(msg) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `💧 &nbsp;<span>${escapeHtml(msg)}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => toast.classList.add('active'), 50);
+        setTimeout(() => {
+          toast.classList.remove('active');
+          setTimeout(() => toast.remove(), 300);
+        }, 3200);
+      }
+
+      // ---- Load product from localStorage by ID ----
+      function loadProductDetail() {
+        const params  = new URLSearchParams(window.location.search);
+        const idParam = params.get('id');
+
+        if (!idParam) {
+          showNotFound();
+          return;
+        }
+
+        const productId = parseInt(idParam, 10);
+        const stored    = localStorage.getItem('aqualife_products');
+
+        if (!stored) {
+          showNotFound();
+          return;
+        }
+
+        const products = JSON.parse(stored);
+        const product  = products.find(p => p.id === productId);
+
+        if (!product) {
+          showNotFound();
+          return;
+        }
+
+        renderProduct(product);
+      }
+
+      function renderProduct(p) {
+        // Update page title & meta
+        document.title = `${p.name} — Aqua Life Enterprises`;
+
+        // Breadcrumb
+        document.getElementById('pd-breadcrumb-name').textContent = p.name;
+
+        // Image
+        const imageWrap = document.getElementById('pd-image-wrap');
+        if (p.image) {
+          imageWrap.innerHTML = `<img src="${p.image}" alt="${escapeHtml(p.name)}" />`;
+        } else {
+          const catConfig = PRODUCT_CATEGORIES.find(c => c.key === p.category);
+          const icon = catConfig ? catConfig.icon : '📦';
+          imageWrap.innerHTML = `
+            <div class="pd-no-image-placeholder">
+              <span style="font-size:5rem;">${icon}</span>
+              <span>No Image Available</span>
+            </div>`;
+        }
+
+        // Category chip
+        const catConfig  = PRODUCT_CATEGORIES.find(c => c.key === p.category);
+        const catLabel   = catConfig ? catConfig.label : 'Other';
+        const catIcon    = catConfig ? catConfig.icon  : '📦';
+        const catKey     = p.category || 'other';
+        const chipEl     = document.getElementById('pd-cat-chip');
+        chipEl.textContent = `${catIcon} ${catLabel}`;
+        chipEl.className   = `pd-cat-chip pd-cat-${catKey}`;
+
+        // Name
+        document.getElementById('pd-product-name').textContent = p.name;
+
+        // Price
+        document.getElementById('pd-price').textContent = `₹${p.price}`;
+
+        // Description — full text, no truncation
+        document.getElementById('pd-desc').textContent = p.desc;
+
+        // Date
+        document.getElementById('pd-date').textContent = `Added on ${p.timestamp}`;
+
+        // Update enquiry link
+        document.getElementById('pd-enquire-btn').href = `index.html#forms`;
+
+        // Show main layout
+        document.getElementById('pd-main').style.display = 'grid';
+      }
+
+      function showNotFound() {
+        document.getElementById('pd-not-found').style.display = 'flex';
+        document.getElementById('pd-breadcrumb-name').textContent = 'Not Found';
+      }
+
+      // Run on page load
+      document.addEventListener('DOMContentLoaded', loadProductDetail);
+    </script>
+  </body>
+</html>

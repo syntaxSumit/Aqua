@@ -1,6 +1,16 @@
 // GLOBAL DATABASE VARIABLES
 let submissions = [];
 let adminFilter = 'all';
+let products = [];
+let activeProductFilter = 'all';
+
+// PRODUCT CATEGORY CONFIG
+const PRODUCT_CATEGORIES = [
+  { key: 'aquaguard', label: 'Aquaguard RO', icon: '💧' },
+  { key: 'havells',   label: 'Havells RO',   icon: '🌊' },
+  { key: 'glen',      label: 'Glen Appliances', icon: '🔥' },
+  { key: 'other',     label: 'Other',         icon: '📦' }
+];
 
 // INITIALIZATION
 window.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +20,13 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   submissions = JSON.parse(localStorage.getItem('aqualife_submissions'));
 
-  // 2. Scroll Fade-in logic
+  // 2. Initialize Products Database
+  initProducts();
+
+  // 3. Render public product section
+  renderPublicProducts();
+
+  // 4. Scroll Fade-in logic
   initFadeIn();
 });
 
@@ -233,6 +249,8 @@ function promptAdmin() {
     // Refresh tables and stats
     renderAdminStats();
     renderAdminTable('all');
+    renderAdminProducts();
+
 
     // Scroll to admin dashboard
     document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
@@ -395,3 +413,327 @@ function exportCSV() {
 
   showToast("CSV records exported successfully.");
 }
+
+
+/* ==========================================================================
+   SECTION 10 — PRODUCT CATALOG MANAGEMENT LOGIC
+   ========================================================================== */
+
+// INITIALIZE PRODUCTS FROM LOCALSTORAGE
+function initProducts() {
+  if (!localStorage.getItem('aqualife_products')) {
+    localStorage.setItem('aqualife_products', JSON.stringify([]));
+  }
+  products = JSON.parse(localStorage.getItem('aqualife_products'));
+}
+
+// SAVE PRODUCTS TO LOCALSTORAGE
+function saveProducts() {
+  localStorage.setItem('aqualife_products', JSON.stringify(products));
+}
+
+// IMAGE PREVIEW HANDLER (shows live thumbnail before saving)
+function handleProductImagePreview(input) {
+  const preview = document.getElementById('product-img-preview');
+  const placeholder = document.getElementById('product-img-placeholder');
+
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+
+    // Security: Validate file type
+    if (!file.type.startsWith('image/')) {
+      showToast('Invalid file. Please select a valid image file (JPG, PNG, WEBP).');
+      input.value = '';
+      return;
+    }
+
+    // Security: Validate file size (max 5 MB)
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('Image too large! Please select an image under 5 MB.');
+      input.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+      if (placeholder) placeholder.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// ADD PRODUCT — Validate, encode image to Base64, save to localStorage
+function addProduct(event) {
+  event.preventDefault();
+
+  const nameInput     = document.getElementById('prod-name');
+  const priceInput    = document.getElementById('prod-price');
+  const descInput     = document.getElementById('prod-desc');
+  const imageInput    = document.getElementById('prod-image');
+  const categoryInput = document.getElementById('prod-category');
+  const statusDiv     = document.getElementById('status-product');
+
+  const name     = nameInput.value.trim();
+  const price    = priceInput.value.trim();
+  const desc     = descInput.value.trim();
+  const category = categoryInput.value;
+
+  // Reset status
+  statusDiv.className = 'form-status';
+  statusDiv.textContent = '';
+
+  // Validate required fields
+  if (!name || !price || !desc || !category) {
+    statusDiv.className = 'form-status error';
+    statusDiv.textContent = 'Please fill in all required fields including Category.';
+    return;
+  }
+
+  // Validate price is a positive number
+  const priceNum = parseFloat(price);
+  if (isNaN(priceNum) || priceNum < 0) {
+    statusDiv.className = 'form-status error';
+    statusDiv.textContent = 'Please enter a valid price (e.g. 4999).';
+    return;
+  }
+
+  // If image is selected, encode it as Base64; otherwise save without image
+  if (imageInput.files && imageInput.files[0]) {
+    const file = imageInput.files[0];
+
+    // Double-check security validations
+    if (!file.type.startsWith('image/')) {
+      statusDiv.className = 'form-status error';
+      statusDiv.textContent = 'Invalid image file. Only JPG, PNG, WEBP formats allowed.';
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      statusDiv.className = 'form-status error';
+      statusDiv.textContent = 'Image is too large. Maximum allowed size is 5 MB.';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      saveNewProduct(name, price, desc, category, e.target.result, statusDiv, nameInput, priceInput, descInput, categoryInput, imageInput);
+    };
+    reader.readAsDataURL(file);
+  } else {
+    saveNewProduct(name, price, desc, category, null, statusDiv, nameInput, priceInput, descInput, categoryInput, imageInput);
+  }
+}
+
+// INTERNAL: Save product data and refresh views
+function saveNewProduct(name, price, desc, category, imageData, statusDiv, nameInput, priceInput, descInput, categoryInput, imageInput) {
+  const newProduct = {
+    id: Date.now(),
+    name: name,
+    price: price,
+    desc: desc,
+    category: category,   // e.g. 'aquaguard' | 'havells' | 'glen' | 'other'
+    image: imageData,     // Base64 string or null
+    timestamp: new Date().toLocaleString()
+  };
+
+  products.push(newProduct);
+  saveProducts();
+
+  // Refresh both admin and public views
+  renderAdminProducts();
+  renderPublicProducts();
+
+  // Reset form fields
+  nameInput.value     = '';
+  priceInput.value    = '';
+  descInput.value     = '';
+  categoryInput.value = '';
+  imageInput.value    = '';
+  const preview = document.getElementById('product-img-preview');
+  const placeholder = document.getElementById('product-img-placeholder');
+  preview.src = '';
+  preview.style.display = 'none';
+  if (placeholder) placeholder.style.display = 'flex';
+
+  statusDiv.className = 'form-status success';
+  statusDiv.textContent = 'Product added successfully! It is now live on the website.';
+  showToast(`Product "${name}" added to catalog successfully.`);
+}
+
+// DELETE A PRODUCT BY ID
+function deleteProduct(id) {
+  if (confirm('Are you sure you want to permanently remove this product from the catalog?')) {
+    products = products.filter(p => p.id !== id);
+    saveProducts();
+    renderAdminProducts();
+    renderPublicProducts();
+    showToast('Product removed from catalog.');
+  }
+}
+
+// CLEAR ALL PRODUCTS FROM CATALOG
+function clearAllProducts() {
+  if (products.length === 0) {
+    showToast('No products in catalog to clear.');
+    return;
+  }
+  if (confirm('🚨 Are you sure you want to permanently delete ALL products from the catalog? This cannot be undone.')) {
+    products = [];
+    saveProducts();
+
+    // Reset category filter back to 'all'
+    activeProductFilter = 'all';
+    document.querySelectorAll('.prod-filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.filter === 'all');
+    });
+
+    renderAdminProducts();
+    renderPublicProducts();
+    showToast('All products have been cleared from the catalog.');
+  }
+}
+
+
+
+// RENDER ADMIN PRODUCT GRID
+function renderAdminProducts() {
+  const grid = document.getElementById('admin-products-grid');
+  if (!grid) return;
+
+  grid.innerHTML = '';
+
+  if (products.length === 0) {
+    grid.innerHTML = `
+      <div class="no-products-msg">
+        <div class="no-products-icon">📦</div>
+        <p>No products added yet. Use the form above to add your first product.</p>
+      </div>`;
+    // Update count badge
+    const countBadge = document.getElementById('admin-products-count');
+    if (countBadge) countBadge.textContent = 0;
+    return;
+  }
+
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'admin-product-card';
+
+    const imgHtml = p.image
+      ? `<img src="${p.image}" alt="${escapeAttr(p.name)}" class="admin-product-img" />`
+      : `<div class="admin-product-no-img">🖼️<span>No Image</span></div>`;
+
+    // Category badge
+    const catConfig = PRODUCT_CATEGORIES.find(c => c.key === p.category);
+    const catLabel  = catConfig ? catConfig.label : 'Other';
+    const catIcon   = catConfig ? catConfig.icon  : '📦';
+
+    card.innerHTML = `
+      ${imgHtml}
+      <div class="admin-product-info">
+        <span class="admin-cat-badge cat-${escapeAttr(p.category || 'other')}">${catIcon} ${escapeHtml(catLabel)}</span>
+        <h5 class="admin-product-name">${escapeHtml(p.name)}</h5>
+        <div class="admin-product-price">₹${escapeHtml(p.price)}</div>
+        <p class="admin-product-desc">${escapeHtml(p.desc)}</p>
+        <div class="admin-product-footer">
+          <span class="admin-product-date">Added: ${escapeHtml(p.timestamp)}</span>
+          <button class="btn-delete-row" onclick="deleteProduct(${p.id})" title="Delete product">🗑️ Remove</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  // Update product count badge
+  const countBadge = document.getElementById('admin-products-count');
+  if (countBadge) countBadge.textContent = products.length;
+}
+
+// SET ACTIVE PRODUCT CATEGORY FILTER (public page)
+function setProductFilter(filterKey) {
+  activeProductFilter = filterKey;
+
+  // Update active button state
+  document.querySelectorAll('.prod-filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filterKey);
+  });
+
+  renderPublicProducts();
+}
+
+// RENDER PUBLIC PRODUCTS SECTION (with category filter)
+function renderPublicProducts() {
+  const section = document.getElementById('public-products-section');
+  const grid    = document.getElementById('public-products-grid');
+  const noMsg   = document.getElementById('pub-no-products-msg');
+  if (!grid || !section) return;
+
+  // Show/hide the whole section
+  if (products.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+  section.style.display = 'block';
+
+  // Build category filter tab counts
+  PRODUCT_CATEGORIES.forEach(cat => {
+    const countEl = document.getElementById(`prod-filter-count-${cat.key}`);
+    if (countEl) countEl.textContent = products.filter(p => p.category === cat.key).length;
+  });
+  const allCountEl = document.getElementById('prod-filter-count-all');
+  if (allCountEl) allCountEl.textContent = products.length;
+
+  // Filter by active category
+  const filtered = activeProductFilter === 'all'
+    ? products
+    : products.filter(p => p.category === activeProductFilter);
+
+  grid.innerHTML = '';
+
+  if (filtered.length === 0) {
+    const catConfig = PRODUCT_CATEGORIES.find(c => c.key === activeProductFilter);
+    grid.innerHTML = `
+      <div class="pub-no-results">
+        <div class="pub-no-results-icon">${catConfig ? catConfig.icon : '📦'}</div>
+        <p>No <strong>${catConfig ? catConfig.label : ''}</strong> products have been added yet.</p>
+      </div>`;
+    initFadeIn();
+    return;
+  }
+
+  filtered.forEach(p => {
+    const card = document.createElement('a');
+    card.className = 'pub-product-card fade-in';
+    card.href = `product.html?id=${p.id}`;
+    card.setAttribute('aria-label', `View details for ${p.name}`);
+
+    const catConfig = PRODUCT_CATEGORIES.find(c => c.key === p.category);
+    const catLabel  = catConfig ? catConfig.label : 'Other';
+    const catIcon   = catConfig ? catConfig.icon  : '📦';
+    const catKey    = p.category || 'other';
+
+    const imgInner = p.image
+      ? `<img src="${p.image}" alt="${escapeAttr(p.name)}" class="pub-product-img" />`
+      : `<div class="pub-product-no-img-icon">${catIcon}</div>`;
+
+    card.innerHTML = `
+      <div class="pub-card-img-wrap">
+        ${imgInner}
+        <div class="pub-card-img-overlay"></div>
+        <span class="pub-card-cat-badge pub-cat-${escapeAttr(catKey)}">${catIcon} ${escapeHtml(catLabel)}</span>
+        <div class="pub-card-price-tag">₹${escapeHtml(p.price)}</div>
+      </div>
+      <div class="pub-card-body">
+        <h4 class="pub-card-name">${escapeHtml(p.name)}</h4>
+        <p class="pub-card-desc">${escapeHtml(p.desc)}</p>
+        <div class="pub-card-footer">
+          <div class="pub-card-view-btn">View Details <span class="pub-card-arrow">→</span></div>
+          <button class="pub-card-quote-btn" onclick="event.preventDefault(); event.stopPropagation(); scrollToFormsTab('enquiry')">Get Quote</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  // Re-run fade-in observer for newly added cards
+  initFadeIn();
+}
+

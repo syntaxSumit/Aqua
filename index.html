@@ -45,6 +45,7 @@
         </a>
         <ul class="nav-links">
           <li><a href="#forms">Support</a></li>
+          <li><a href="#products">Products</a></li>
           <li><a href="#why-us">Why Us</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -68,6 +69,7 @@
       <div class="mobile-menu" id="mobile-menu">
         <ul class="mobile-menu-links">
           <li><a href="#forms" onclick="toggleMobileMenu()">Support</a></li>
+          <li><a href="#products" onclick="toggleMobileMenu()">Products</a></li>
           <li><a href="#why-us" onclick="toggleMobileMenu()">Why Us</a></li>
           <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
         </ul>
@@ -161,7 +163,44 @@
       </div>
     </div>
 
-    <!-- PRODUCTS SECTION REMOVED -->
+    <!-- SECTION 5 — DYNAMIC PUBLIC PRODUCTS SECTION -->
+    <section id="public-products-section" class="pub-products-sec" style="display: none;">
+      <div class="pub-products-container">
+        <div class="pub-products-header fade-in">
+          <span class="section-label">Our Catalog</span>
+          <h2 class="section-title" id="products">Our Products</h2>
+          <p class="section-subtitle">Browse our curated range of premium RO systems and home appliances.</p>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="prod-filter-bar fade-in">
+          <button class="prod-filter-btn active" data-filter="all" onclick="setProductFilter('all')">
+            All
+            <span class="prod-filter-count" id="prod-filter-count-all">0</span>
+          </button>
+          <button class="prod-filter-btn" data-filter="aquaguard" onclick="setProductFilter('aquaguard')">
+            💧 Aquaguard RO
+            <span class="prod-filter-count" id="prod-filter-count-aquaguard">0</span>
+          </button>
+          <button class="prod-filter-btn" data-filter="havells" onclick="setProductFilter('havells')">
+            🌊 Havells RO
+            <span class="prod-filter-count" id="prod-filter-count-havells">0</span>
+          </button>
+          <button class="prod-filter-btn" data-filter="glen" onclick="setProductFilter('glen')">
+            🔥 Glen Appliances
+            <span class="prod-filter-count" id="prod-filter-count-glen">0</span>
+          </button>
+          <button class="prod-filter-btn" data-filter="other" onclick="setProductFilter('other')">
+            📦 Other
+            <span class="prod-filter-count" id="prod-filter-count-other">0</span>
+          </button>
+        </div>
+
+        <div class="pub-products-grid" id="public-products-grid">
+          <!-- Dynamically populated by JavaScript -->
+        </div>
+      </div>
+    </section>
 
     <!-- SECTION 6 — FORMS SECTION -->
     <section id="forms" class="forms-sec">
@@ -831,6 +870,84 @@
                   <!-- Javascript populated -->
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+          <!-- B) PRODUCT CATALOG MANAGER CARD -->
+          <div class="admin-card-box">
+            <div class="admin-card-title">
+              <span>🛍️ Product Catalog Manager</span>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span class="admin-products-count-badge">Saved: <strong id="admin-products-count">0</strong> product(s)</span>
+                <button class="admin-btn admin-btn-danger" onclick="clearAllProducts()">
+                  Clear All Products
+                </button>
+              </div>
+            </div>
+
+            <!-- Add Product Form -->
+            <form onsubmit="addProduct(event)" id="add-product-form">
+              <div class="product-form-layout">
+
+                <!-- Image Upload Column -->
+                <div class="product-img-column">
+                  <label class="product-img-label">Product Image (Optional)</label>
+                  <div class="product-img-drop-zone" onclick="document.getElementById('prod-image').click()">
+                    <div id="product-img-placeholder" class="product-img-placeholder">
+                      <span class="prod-upload-icon">📷</span>
+                      <span>Click to upload image</span>
+                      <small>JPG, PNG, WEBP — Max 5 MB</small>
+                    </div>
+                    <img id="product-img-preview" src="" alt="Product preview" class="product-img-preview-el" style="display:none;" />
+                  </div>
+                  <input
+                    type="file"
+                    id="prod-image"
+                    accept="image/*"
+                    style="display: none;"
+                    onchange="handleProductImagePreview(this)"
+                  />
+                </div>
+
+                <!-- Fields Column -->
+                <div class="product-fields-column">
+                  <div class="form-group">
+                    <label for="prod-name">Product Name *</label>
+                    <input type="text" id="prod-name" placeholder="e.g. Aquaguard Superio RO+UV" maxlength="120" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="prod-price">Price (₹) *</label>
+                    <input type="number" id="prod-price" placeholder="e.g. 14999" min="0" step="1" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="prod-category">Category *</label>
+                    <select id="prod-category" required>
+                      <option value="" disabled selected>Select a category</option>
+                      <option value="aquaguard">💧 Aquaguard RO Systems</option>
+                      <option value="havells">🌊 Havells RO Systems</option>
+                      <option value="glen">🔥 Glen Appliances</option>
+                      <option value="other">📦 Other Products</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="prod-desc">Product Description *</label>
+                    <textarea id="prod-desc" placeholder="Describe features, specifications, warranty..." maxlength="500" rows="4" required></textarea>
+                  </div>
+                  <div class="form-submit-row" style="margin-top: 0;">
+                    <button type="submit" class="form-submit-btn" id="add-product-btn">
+                      ➕ Add Product to Catalog
+                    </button>
+                  </div>
+                  <div class="form-status" id="status-product"></div>
+                </div>
+              </div>
+            </form>
+
+            <!-- Admin Product Cards Grid -->
+            <div class="admin-products-section-title">📋 Saved Products</div>
+            <div class="admin-products-grid" id="admin-products-grid">
+              <!-- Dynamically populated by renderAdminProducts() -->
             </div>
           </div>
         </div>
