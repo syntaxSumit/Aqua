@@ -7,9 +7,9 @@ let activeProductFilter = 'all';
 // PRODUCT CATEGORY CONFIG
 const PRODUCT_CATEGORIES = [
   { key: 'aquaguard', label: 'Aquaguard RO', icon: '💧' },
-  { key: 'havells',   label: 'Havells RO',   icon: '🌊' },
-  { key: 'glen',      label: 'Glen Appliances', icon: '🔥' },
-  { key: 'other',     label: 'Other',         icon: '📦' }
+  { key: 'havells', label: 'Havells RO', icon: '🌊' },
+  { key: 'glen', label: 'Glen Appliances', icon: '🔥' },
+  { key: 'other', label: 'Other', icon: '📦' }
 ];
 
 // INITIALIZATION
@@ -455,7 +455,7 @@ function handleProductImagePreview(input) {
     }
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       preview.src = e.target.result;
       preview.style.display = 'block';
       if (placeholder) placeholder.style.display = 'none';
@@ -464,25 +464,33 @@ function handleProductImagePreview(input) {
   }
 }
 
-// ADD PRODUCT — Validate, encode image to Base64, save to localStorage
-function addProduct(event) {
+// ==========================================
+// CLOUDINARY & SHEETDB CONFIG PLACEHOLDERS
+// ==========================================
+// Replace these placeholders with your actual API credentials:
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dsqyircqx/image/upload"; // e.g. "https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload"
+const UPLOAD_PRESET = "product_preset";   // e.g. "your_unsigned_preset"
+const SHEETDB_API_URL = "https://sheetdb.io/api/v1/zfry848ve3aoe"; // e.g. "https://sheetdb.io/api/v1/YOUR_API_ID"
+
+// ADD PRODUCT — Validate, upload to Cloudinary, save to SheetDB and localStorage
+async function addProduct(event) {
   event.preventDefault();
 
-  const nameInput     = document.getElementById('prod-name');
-  const priceInput    = document.getElementById('prod-price');
-  const descInput     = document.getElementById('prod-desc');
-  const imageInput    = document.getElementById('prod-image');
+  const nameInput = document.getElementById('prod-name');
+  const priceInput = document.getElementById('prod-price');
+  const descInput = document.getElementById('prod-desc');
+  const imageInput = document.getElementById('prod-image');
   const categoryInput = document.getElementById('prod-category');
-  const statusDiv     = document.getElementById('status-product');
+  const statusDiv = document.getElementById('status-product');
 
-  const name     = nameInput.value.trim();
-  const price    = priceInput.value.trim();
-  const desc     = descInput.value.trim();
+  const name = nameInput.value.trim();
+  const price = priceInput.value.trim();
+  const desc = descInput.value.trim();
   const category = categoryInput.value;
 
-  // Reset status
-  statusDiv.className = 'form-status';
-  statusDiv.textContent = '';
+  // Reset status and show uploading indicator
+  statusDiv.className = 'form-status info';
+  statusDiv.textContent = 'Uploading image and saving product details... Please wait.';
 
   // Validate required fields
   if (!name || !price || !desc || !category) {
@@ -499,29 +507,80 @@ function addProduct(event) {
     return;
   }
 
-  // If image is selected, encode it as Base64; otherwise save without image
-  if (imageInput.files && imageInput.files[0]) {
-    const file = imageInput.files[0];
+  let imageUrl = null;
 
-    // Double-check security validations
-    if (!file.type.startsWith('image/')) {
-      statusDiv.className = 'form-status error';
-      statusDiv.textContent = 'Invalid image file. Only JPG, PNG, WEBP formats allowed.';
-      return;
-    }
-    if (file.size > 5 * 1024 * 1024) {
-      statusDiv.className = 'form-status error';
-      statusDiv.textContent = 'Image is too large. Maximum allowed size is 5 MB.';
-      return;
+  try {
+    // 1. Upload to Cloudinary if an image is selected
+    if (imageInput.files && imageInput.files[0]) {
+      const file = imageInput.files[0];
+
+      // File type validation
+      if (!file.type.startsWith('image/')) {
+        statusDiv.className = 'form-status error';
+        statusDiv.textContent = 'Invalid image file. Only image formats (JPG, PNG, WEBP) are allowed.';
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', UPLOAD_PRESET.trim());
+
+      const cloudinaryRes = await fetch(CLOUDINARY_URL, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!cloudinaryRes.ok) {
+        let errMsg = 'Failed to upload image to Cloudinary.';
+        try {
+          const errData = await cloudinaryRes.json();
+          if (errData && errData.error && errData.error.message) {
+            errMsg += ` Reason: ${errData.error.message}`;
+          }
+        } catch (e) {}
+        throw new Error(errMsg);
+      }
+
+      const cloudinaryData = await cloudinaryRes.json();
+      imageUrl = cloudinaryData.secure_url;
     }
 
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      saveNewProduct(name, price, desc, category, e.target.result, statusDiv, nameInput, priceInput, descInput, categoryInput, imageInput);
+    const timestamp = new Date().toLocaleString();
+
+    // 2. Save to Google Sheets via SheetDB API
+    const sheetData = {
+      data: [
+        {
+          id: Date.now().toString(),
+          name: name,
+          price: price,
+          desc: desc,
+          category: category,
+          image: imageUrl || '',
+          timestamp: timestamp
+        }
+      ]
     };
-    reader.readAsDataURL(file);
-  } else {
-    saveNewProduct(name, price, desc, category, null, statusDiv, nameInput, priceInput, descInput, categoryInput, imageInput);
+
+    const sheetdbRes = await fetch(SHEETDB_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(sheetData)
+    });
+
+    if (!sheetdbRes.ok) {
+      throw new Error('Failed to save product to Google Sheet via SheetDB.');
+    }
+
+    // 3. Save to local storage database for immediate rendering
+    saveNewProduct(name, price, desc, category, imageUrl, statusDiv, nameInput, priceInput, descInput, categoryInput, imageInput);
+
+  } catch (error) {
+    console.error(error);
+    statusDiv.className = 'form-status error';
+    statusDiv.textContent = `Error: ${error.message}. Please try again.`;
   }
 }
 
@@ -545,11 +604,11 @@ function saveNewProduct(name, price, desc, category, imageData, statusDiv, nameI
   renderPublicProducts();
 
   // Reset form fields
-  nameInput.value     = '';
-  priceInput.value    = '';
-  descInput.value     = '';
+  nameInput.value = '';
+  priceInput.value = '';
+  descInput.value = '';
   categoryInput.value = '';
-  imageInput.value    = '';
+  imageInput.value = '';
   const preview = document.getElementById('product-img-preview');
   const placeholder = document.getElementById('product-img-placeholder');
   preview.src = '';
@@ -625,8 +684,8 @@ function renderAdminProducts() {
 
     // Category badge
     const catConfig = PRODUCT_CATEGORIES.find(c => c.key === p.category);
-    const catLabel  = catConfig ? catConfig.label : 'Other';
-    const catIcon   = catConfig ? catConfig.icon  : '📦';
+    const catLabel = catConfig ? catConfig.label : 'Other';
+    const catIcon = catConfig ? catConfig.icon : '📦';
 
     card.innerHTML = `
       ${imgHtml}
@@ -663,8 +722,8 @@ function setProductFilter(filterKey) {
 // RENDER PUBLIC PRODUCTS SECTION (with category filter)
 function renderPublicProducts() {
   const section = document.getElementById('public-products-section');
-  const grid    = document.getElementById('public-products-grid');
-  const noMsg   = document.getElementById('pub-no-products-msg');
+  const grid = document.getElementById('public-products-grid');
+  const noMsg = document.getElementById('pub-no-products-msg');
   if (!grid || !section) return;
 
   // Show/hide the whole section
@@ -707,9 +766,9 @@ function renderPublicProducts() {
     card.setAttribute('aria-label', `View details for ${p.name}`);
 
     const catConfig = PRODUCT_CATEGORIES.find(c => c.key === p.category);
-    const catLabel  = catConfig ? catConfig.label : 'Other';
-    const catIcon   = catConfig ? catConfig.icon  : '📦';
-    const catKey    = p.category || 'other';
+    const catLabel = catConfig ? catConfig.label : 'Other';
+    const catIcon = catConfig ? catConfig.icon : '📦';
+    const catKey = p.category || 'other';
 
     const imgInner = p.image
       ? `<img src="${p.image}" alt="${escapeAttr(p.name)}" class="pub-product-img" />`
